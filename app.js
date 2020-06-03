@@ -1,19 +1,5 @@
 /* ux requirements
-The starting screen should have a button that users can click to start the quiz.
 
-Users should be prompted through a series of at leastmultiple choice questions that they can answer.
-Users should be asked questions 1 after the other.
-Users should only be prompted with 1 question at a time.
-
-Users should not be able to skip questions.
-Users should also be able to see which question they're on (for instance, "7 out of 10") and their current score ("5 correct, 2 incorrect").
-
-Upon submitting an answer, users should:
-receive textual feedback about their answer. If they were incorrect, they should be told the correct answer.
-be moved onto the next question (or interact with an element to move on).
-
-Users should be shown their overall score at the end of the quiz. In other words, how many questions they got right out of the total questions asked.
-Users should be able to start a new quiz.
 */
 /**
  * Example store structure
@@ -23,24 +9,59 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'Which planet is bigger?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'Earth',
+        'Mars',
+        'Io',
+        'Saturn',
+        'Venus'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'Saturn'
     },
     {
-      question: 'What is the current year?',
+      question: 'Which of these planets have no moons?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'Uranus',
+        'Mercury',
+        'Earth',
+        'Sun',
+        'Pluto'
       ],
-      correctAnswer: '2019'
+      correctAnswer: 'Mercury'
+    },
+    {
+      question: 'Which of these is the largest object in the asteroid belt?',
+      answers: [
+        'Makemake',
+        'Ceres',
+        '4 Vesta',
+        '3 Juno',
+        'Pallas'
+      ],
+      correctAnswer: 'Ceres'
+    },
+    {
+      question: 'Which galaxy is further away from Earth?',
+      answers: [
+        'Andromeda',
+        'large magellanic cloud',
+        'MACS0647-JD',
+        'Milky Way',
+        'Leo I'
+      ],
+      correctAnswer: 'MACS0647-JD'
+    },
+    {
+      question: 'Which of these can be formed in a supernova?',
+      answers: [
+        'white dwarf',
+        'neutron star',
+        'a galaxy',
+        'alien life',
+        'dark matter'
+      ],
+      correctAnswer: 'neutron star'
     }
   ],
   quizStarted: false,
