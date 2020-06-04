@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 /* eslint-disable strict */
 
 /* ux requirements
@@ -71,6 +72,55 @@ const store = {
   score: 0
 };
 
+function currentQuestion(){}
+console.log('Current Question')
+
+
+function generateQuestion(){
+  return `<form role="form"> 
+        <fieldset>
+        <legend>${store.questions[0].question}</legend>
+
+        <input type="radio" id="option-one" name="choice" value="0" required> 
+        <label for="option-one">${store.questions[0].answers[0]}</label> 
+
+        <input type="radio" id="option-two" name="choice" value="1" required> 
+        <label for="option-two">${store.questions[0].answers[1]}</label>
+
+        <input type="radio" id="option-three" name="choice" value="2" required> 
+        <label for="option-three">${store.questions[0].answers[2]}</label>
+
+        <input type="radio" id="option-four" name="choice" value="3" required> 
+        <label for="option-four">${store.questions[0].answers[3]}</label>
+
+        <input type="radio" id="option-five" name="choice" value="4" required> 
+        <label for="option-five">${store.questions[0].answers[4]}</label>
+
+        <button type="submit">Submit Answer</button>
+      </fieldset> 
+      </form>`;
+}
+
+function startScreen(){}
+console.log('Start Screen')
+
+function render(){
+  let html = '';
+  if (store.quizStarted === false){
+    $('main'.html(startScreen());
+  }
+  else if ( )
+}
+
+
+function startQuiz() {
+  $('.start-quiz').on('click', function(event) {
+    store.quizStarted = true;
+    $('main').html(generateQuestion());
+  });
+}
+console.log(startQuiz());
+
 /**
  * 
  * Technical requirements:
@@ -101,44 +151,44 @@ const store = {
 
 //renata's crazy stuff
 
-let questionCounter = 0; //tracks question number
-    let selections = []; //array containing user choices
-    let quiz = $('#quiz'); //quiz div object
+// let questionCounter = 0; //tracks question number
+//     let selections = []; //array containing user choices
+//     let quiz = $('#quiz'); //quiz div object
     
-    // display initial question
-    nextDisplay();
+//     // display initial question
+//     nextDisplay();
     
-    // click handler for the 'next' button
-    $('#next').on('click', function(e) {}
+//     // click handler for the 'next' button
+//     $('#next').on('click', function(e) {}
   
-    // click handler for the 'prev' button
-    $('#prev').on('click', function (e) {}
+//     // click handler for the 'prev' button
+//     $('#prev').on('click', function (e) {}
     
-    // click handler for the 'Start Over' button
-    $('#start').on('click', function (e) {}
+//     // click handler for the 'Start Over' button
+//     $('#start').on('click', function (e) {}
     
-    // animates buttons on hover
-    $('.button').on('mouseenter', function () {}
+//     // animates buttons on hover
+//     $('.button').on('mouseenter', function () {}
 
-    // creates and returns the div that contains the questions and 
-    // the answer selections
-    function generateQuestionElement(index) {}
+//     // creates and returns the div that contains the questions and 
+//     // the answer selections
+//     function generateQuestionElement(index) {}
     
-    // creates a list of the answer choices as radio inputs
-    function theRadioButton(index) {}
+//     // creates a list of the answer choices as radio inputs
+//     function theRadioButton(index) {}
     
-    // reads the user selection and pushes the value to an array
-    function choose() {}
+//     // reads the user selection and pushes the value to an array
+//     function choose() {}
     
-    // displays next requested element
-    function nextDisplay() {
-          // Controls display of 'prev' button
-          if(questionCounter === 1){
-          }
-          else{
+//     // displays next requested element
+//     function nextDisplay() {
+//           // Controls display of 'prev' button
+//           if(questionCounter === 1){
+//           }
+//           else{
 
-          }
-        }
-    // computes score and returns a paragraph element to be displayed
-    function scoreDisplay() {}
-  }
+//           }
+//         }
+//     // computes score and returns a paragraph element to be displayed
+//     function scoreDisplay() {}
+//   }
