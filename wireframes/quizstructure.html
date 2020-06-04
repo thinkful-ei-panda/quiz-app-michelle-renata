@@ -7,20 +7,32 @@
 </head>
 <body>
     <h1>The Hardest Space Quiz You'll Take Today</h1>
-    <h3>Question 1 out of 5</h3>
-    <h3>Score: 0 out of 5</h3>
-    <h2>Which Planet is Bigger?</h2>
-    <form> 
-        <input type="radio" id="wrong" name="answer" value="answer"> 
-        <label for="answer">Earth</label> 
-        <input type="radio" id="wrong" name="answer" value="answer"> 
-        <label for="answer">Mars</label>
-        <input type="radio" id="wrong" name="answer" value="answer"> 
-        <label for="answer">Io</label>
-        <input type="radio" id="wrong" name="answer" value="answer"> 
-        <label for="answer">Saturn</label>
-        <input type="radio" id="wrong" name="answer" value="answer"> 
-        <label for="answer">Venus</label>
-    </form>
+    <p>Question 1 out of 5</p>
+    <p>Score: 0 out of 5</p>
+
+    <div role="main">
+        <form role="form"> 
+            <fieldset>
+                <legend>Which Planet is Bigger?</legend>
+
+                <input type="radio" id="option-one" name="choice" value="0" required> 
+                <label for="option-one">Earth</label> 
+
+                <input type="radio" id="option-two" name="choice" value="1" required> 
+                <label for="option-two">Mars</label>
+
+                <input type="radio" id="option-three" name="choice" value="2" required> 
+                <label for="option-three">Io</label>
+
+                <input type="radio" id="option-four" name="choice" value="3" required> 
+                <label for="option-four">Saturn</label>
+
+                <input type="radio" id="option-five" name="choice" value="4" required> 
+                <label for="option-five">Venus</label>
+
+                <button type="submit">Submit Answer</button>
+            </fieldset> 
+        </form>
+    </div>
   </body>
 </html>
