@@ -1,84 +1,114 @@
 /* eslint-disable indent */
 /* eslint-disable strict */
-const store = {
+const myQuestions = {
     // 5 or more questions are required
     questions: [
       {
         question: 'Which planet is bigger?',
         answers: [
-          'Earth',
-          'Mars',
-          'Io',
-          'Saturn',
-          'Venus'
+          a: 'Earth',
+          b: 'Mars',
+          c: 'Io',
+          d: 'Saturn',
+          e: 'Venus'
         ],
         correctAnswer: 'Saturn'
       },
       {
         question: 'Which of these planets have no moons?',
         answers: [
-          'Uranus',
-          'Mercury',
-          'Earth',
-          'Sun',
-          'Pluto'
+         a: 'Uranus',
+         b: 'Mercury',
+         c: 'Earth',
+         d: 'Sun',
+         e: 'Pluto'
         ],
         correctAnswer: 'Mercury'
       },
       {
         question: 'Which of these is the largest object in the asteroid belt?',
         answers: [
-          'Makemake',
-          'Ceres',
-          '4 Vesta',
-          '3 Juno',
-          'Pallas'
+         a: 'Makemake',
+         b: 'Ceres',
+         c: '4 Vesta',
+         d: '3 Juno',
+         e: 'Pallas'
         ],
         correctAnswer: 'Ceres'
       },
       {
         question: 'Which galaxy is further away from Earth?',
         answers: [
-          'Andromeda',
-          'large magellanic cloud',
-          'MACS0647-JD',
-          'Milky Way',
-          'Leo I'
+         a: 'Andromeda',
+         b: 'large magellanic cloud',
+         c: 'MACS0647-JD',
+         d: 'Milky Way',
+         e: 'Leo I'
         ],
         correctAnswer: 'MACS0647-JD'
       },
       {
         question: 'Which of these can be formed in a supernova?',
         answers: [
-          'white dwarf',
-          'neutron star',
-          'a galaxy',
-          'alien life',
-          'dark matter'
+         a: 'white dwarf',
+         b: 'black hole',
+         c: 'a galaxy',
+         d: 'alien life',
+         e: 'dark matter'
         ],
-        correctAnswer: 'neutron star'
+        correctAnswer: 'dark matter'
       }
     ],
-    quizStarted: false,
-    questionNumber: 0,
-    score: 0
   };
 
   function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
-	function showQuestions(questions, quizContainer){
-		// code will go here
-	}
 
 	function showResults(questions, quizContainer, resultsContainer){
-		// code will go here
-	}
+        const answerContainers = quizContainer.querySelectorAll('.answers');
+        let userAnswer = '';
+        let numCorrect = 0;
+        for(var i=0; i<questions.length; i++){
+            userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+                if(userAnswer===questions[i].correctAnswer){
+                    numCorrect++;
+                    answerContainers[i].style.color = 'lightgreen';
+                }
+            else{
+                    answerContainers[i].style.color = 'red';
+                }
+        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+        }
+    }
 
 	// show the questions
-	showQuestions(questions, quizContainer);
+    function showQuestions(questions, quizContainer){
+        let output = [];
+        let answers;
+        for(var i=0; i<questions.length; i++){
+            answers = [];
+            for(letter in questions[i].answers){
+                answers.push(
+                    '<label>'
+                        + '<input type="radio" name="question'+i+'" value="'+letter+'">'
+                        + letter + ': '
+                        + questions[i].answers[letter]
+                        + '</label>'
+                );
+            }
+            output.push(
+                '<div class="question">' + questions[i].question + '</div>'
+                + '<div class="answers">' + answers.join('') + '</div>'
+            );
+        }
+        quizContainer.innerHTML = output.join('');
+    }
 
 	// when user clicks submit, show results
 	submitButton.onclick = function(){
-		showResults(questions, quizContainer, resultsContainer);
-	}
+        showResults(questions, quizContainer, resultsContainer);
+        let quizContainer = document.getElementById('quiz');
+        let resultsContainer = document.getElementById('results');
+        let submitButton = document.getElementById('submit');
+    }
 }
