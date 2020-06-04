@@ -7,7 +7,7 @@
 /**
  * Example store structure
  */
- 
+
 const store = {
   // 5 or more questions are required
   questions: [
@@ -72,11 +72,18 @@ const store = {
   score: 0
 };
 
-function currentQuestion(){}
-console.log('Current Question')
+// creates elements for the start page
+function startScreen() {
+  return `
+  <header>
+    <h1>The Hardest Space Quiz You'll Take Today</h1>
+    <p>Think you know space? Let's go.</p>
+    <button type="button" class="start-quiz">Start Quiz</button>
+  </header>`;
+}
 
-
-function generateQuestion(){
+// create elements for the questions page
+function generateQuestion() {
   return `<form role="form"> 
         <fieldset>
         <legend>${store.questions[0].question}</legend>
@@ -101,12 +108,10 @@ function generateQuestion(){
       </form>`;
 }
 
-function startScreen(){}
-console.log('Start Screen')
 
-function render(){
+function render() {
   let html = '';
-  if (store.quizStarted === false){
+  if (store.quizStarted === false) {
     $('main'.html(startScreen());
   }
   else if ( )
@@ -114,7 +119,7 @@ function render(){
 
 
 function startQuiz() {
-  $('.start-quiz').on('click', function(event) {
+  $('.start-quiz').on('click', function (event) {
     store.quizStarted = true;
     $('main').html(generateQuestion());
   });
@@ -122,10 +127,10 @@ function startQuiz() {
 console.log(startQuiz());
 
 /**
- * 
+ *
  * Technical requirements:
- * 
- * Your app should include a render() function, that regenerates the view each time the store is updated. 
+ *
+ * Your app should include a render() function, that regenerates the view each time the store is updated.
  * See your course material, consult your instructor, and reference the slides for more details.
  *
  * NO additional HTML elements should be added to the index.html file.
@@ -133,7 +138,7 @@ console.log(startQuiz());
  * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
  *
  * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
- * 
+ *
  */
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
@@ -154,32 +159,32 @@ console.log(startQuiz());
 // let questionCounter = 0; //tracks question number
 //     let selections = []; //array containing user choices
 //     let quiz = $('#quiz'); //quiz div object
-    
+
 //     // display initial question
 //     nextDisplay();
-    
+
 //     // click handler for the 'next' button
 //     $('#next').on('click', function(e) {}
-  
+
 //     // click handler for the 'prev' button
 //     $('#prev').on('click', function (e) {}
-    
+
 //     // click handler for the 'Start Over' button
 //     $('#start').on('click', function (e) {}
-    
+
 //     // animates buttons on hover
 //     $('.button').on('mouseenter', function () {}
 
 //     // creates and returns the div that contains the questions and 
 //     // the answer selections
 //     function generateQuestionElement(index) {}
-    
+
 //     // creates a list of the answer choices as radio inputs
 //     function theRadioButton(index) {}
-    
+
 //     // reads the user selection and pushes the value to an array
 //     function choose() {}
-    
+
 //     // displays next requested element
 //     function nextDisplay() {
 //           // Controls display of 'prev' button
