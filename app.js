@@ -128,9 +128,17 @@ function startPage() {
 
 function startQuiz() {
   $('.start-quiz').on('click', function (event) {
+    event.preventDefault();
     store.quizStarted = true;
+    store.score = 0;
+    store.questionNumber = 0;
     $('main').html(generateQuestion());
+    showQuestion();
   });
+}
+
+function showQuestion() {
+
 }
 
 /**
