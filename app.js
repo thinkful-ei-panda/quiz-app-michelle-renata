@@ -108,15 +108,23 @@ function generateQuestion() {
       </form>`;
 }
 
-
-function render() {
-  let html = '';
-  if (store.quizStarted === false) {
-    $('main'.html(startScreen());
-  }
-  else if ( )
+function endQuiz() {
+  return `
+  <header>
+    <h1>End of Quiz</h1>
+    <h3>Score:</h3>
+    <p class="number-right">Right: #</p>
+    <p class="number-wrong">Wrong: #</p>
+    <button class="restart-quiz">New Game</button>
+  </header>
+  `;
 }
 
+// creates start intro page
+function startPage() {
+  $('main').html(startScreen());
+  startQuiz();
+}
 
 function startQuiz() {
   $('.start-quiz').on('click', function (event) {
@@ -124,7 +132,6 @@ function startQuiz() {
     $('main').html(generateQuestion());
   });
 }
-console.log(startQuiz());
 
 /**
  *
