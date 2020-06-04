@@ -138,7 +138,40 @@ function startQuiz() {
 }
 
 function showQuestion() {
+  $('main').html(generateQuestion());
+}
 
+// create next question function
+// handle next button
+// handle submit button
+
+// increments score
+function updateScore() {
+  store.score++;
+}
+
+// create correct and wrong selection results
+
+// show results page
+function showResult() {
+  $('main').html(resultsTemplate());
+}
+
+// create results template
+
+// when user clicks restart quiz button
+function restartQuiz() {
+  $('main').on('click', '.start-quiz', function (event) {
+    event.preventDefault();
+    store.quizStarted = false;
+    renderQuiz();
+  });
+}
+
+function renderQuiz() {
+  startScreen();
+  // create next button function
+  // create submit button
 }
 
 /**
@@ -167,48 +200,3 @@ function showQuestion() {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-
-
-//renata's crazy stuff
-
-// let questionCounter = 0; //tracks question number
-//     let selections = []; //array containing user choices
-//     let quiz = $('#quiz'); //quiz div object
-
-//     // display initial question
-//     nextDisplay();
-
-//     // click handler for the 'next' button
-//     $('#next').on('click', function(e) {}
-
-//     // click handler for the 'prev' button
-//     $('#prev').on('click', function (e) {}
-
-//     // click handler for the 'Start Over' button
-//     $('#start').on('click', function (e) {}
-
-//     // animates buttons on hover
-//     $('.button').on('mouseenter', function () {}
-
-//     // creates and returns the div that contains the questions and 
-//     // the answer selections
-//     function generateQuestionElement(index) {}
-
-//     // creates a list of the answer choices as radio inputs
-//     function theRadioButton(index) {}
-
-//     // reads the user selection and pushes the value to an array
-//     function choose() {}
-
-//     // displays next requested element
-//     function nextDisplay() {
-//           // Controls display of 'prev' button
-//           if(questionCounter === 1){
-//           }
-//           else{
-
-//           }
-//         }
-//     // computes score and returns a paragraph element to be displayed
-//     function scoreDisplay() {}
-//   }
