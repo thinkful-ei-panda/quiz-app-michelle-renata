@@ -6,10 +6,11 @@
   <title>Space Quiz 🌎</title>
 </head>
 <body>
-  <h1>CORRECT! 🎉</h1>
-  <h3>Score:</h3>
-  <p>Right: #</p>
-  <p>Wrong: #</p>
-  <button>Next</button>
+  <main>
+    <h1>CORRECT! 🎉</h1>
+    <h2>Great job! The correct answer is ${store.questions[store.questionNumber].correctAnswer}</h2>
+    <h3>Score: ${store.score}</h3>
+    <button class="next-question">Next Question</button>
+  </main>
 </body>
 </html>

@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Space Quiz 🌎</title>
+  <title>Space Quiz 🌑</title>
 </head>
 <body>
-  <h1>WRONG 😢</h1>
-  <h2>Right Answer</h2>
-  <p>*correct answer here*</p>
-  <h3>Score:</h3>
-  <p>Right: #</p>
-  <p>Wrong: #</p>
-  <button>Next</button>
+  <main>
+    <h1>WRONG 😢</h1>
+    <h2>Bummer! The right answer is ${store.questions[store.questionNumber].correctAnswer}</h2>
+    <h3>Score: ${score.score}</h3>
+    <button class="next-question">Next Question</button>
+  </main>
 </body>
 </html>
