@@ -1,1 +1,12 @@
-### Boilerplate app structure for Quiz App project
+# Quiz App (Space Quiz App 🌑)
+
+A simple quiz app built by Michelle Janosi and Renata Dickinson.
+
+## Built With
+
+* HTML / CSS / jQuery 
+
+## Links
+
+* Repo: [Github](https://github.com/thinkful-ei-panda/quiz-app-michelle-renata)
+* Live: [See it live]()
