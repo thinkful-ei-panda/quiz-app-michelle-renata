@@ -1,11 +1,14 @@
-/* eslint-disable no-unreachable */
-/* eslint-disable strict */
-
-/* ux requirements
-
-*/
 /**
- * Example store structure
+ *
+ * Technical requirements:
+ *
+ * Your app should include a render() function, that regenerates the view each time the store is updated.
+ * See your course material, consult your instructor, and reference the slides for more details.
+ *
+ * NO additional HTML elements should be added to the index.html file.
+ *
+ * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
+ *
  */
 
 const store = {
@@ -15,7 +18,7 @@ const store = {
       question: 'Which planet is bigger?',
       answers: [
         'Earth',
-        'Mars',
+        'Uranus',
         'Io',
         'Saturn',
         'Venus'
@@ -48,23 +51,23 @@ const store = {
       question: 'Which galaxy is further away from Earth?',
       answers: [
         'Andromeda',
-        'large magellanic cloud',
+        'Large Magellanic Cloud',
         'MACS0647-JD',
         'Milky Way',
-        'Leo I'
+        'Leo Stellar Dust'
       ],
       correctAnswer: 'MACS0647-JD'
     },
     {
-      question: 'Which of these can be formed in a supernova?',
+      question: 'Which planet has the most volcanoes?',
       answers: [
-        'white dwarf',
-        'neutron star',
-        'a galaxy',
-        'alien life',
-        'dark matter'
+        'Earth',
+        'Jupiter',
+        'Neptune',
+        'Venus',
+        'Mercury'
       ],
-      correctAnswer: 'neutron star'
+      correctAnswer: 'Venus'
     }
   ],
   quizStarted: false,
@@ -72,61 +75,24 @@ const store = {
   score: 0
 };
 
-// creates elements for the start page
+// render elements for the start page
 function startScreen() {
   return `
   <header>
-    <h1>The Hardest Space Quiz You'll Take Today</h1>
+    <h1>The Hardest Space Quiz You'll Take Today 🌑</h1>
     <p>Think you know space? Let's go.</p>
     <button type="button" class="start-quiz">Start Quiz</button>
   </header>`;
 }
 
-// create elements for the questions page
-function generateQuestion() {
-  return `<form role="form"> 
-        <fieldset>
-        <legend>${store.questions[0].question}</legend>
-
-        <input type="radio" id="option-one" name="choice" value="0" required> 
-        <label for="option-one">${store.questions[0].answers[0]}</label> 
-
-        <input type="radio" id="option-two" name="choice" value="1" required> 
-        <label for="option-two">${store.questions[0].answers[1]}</label>
-
-        <input type="radio" id="option-three" name="choice" value="2" required> 
-        <label for="option-three">${store.questions[0].answers[2]}</label>
-
-        <input type="radio" id="option-four" name="choice" value="3" required> 
-        <label for="option-four">${store.questions[0].answers[3]}</label>
-
-        <input type="radio" id="option-five" name="choice" value="4" required> 
-        <label for="option-five">${store.questions[0].answers[4]}</label>
-
-        <button type="submit">Submit Answer</button>
-      </fieldset> 
-      </form>`;
-}
-
-function endQuiz() {
-  return `
-  <header>
-    <h1>End of Quiz</h1>
-    <h3>Score:</h3>
-    <p class="number-right">Right: #</p>
-    <p class="number-wrong">Wrong: #</p>
-    <button class="restart-quiz">New Game</button>
-  </header>
-  `;
-}
-
-// creates start intro page
+// renders start page elements and start button event function
 function startPage() {
   $('main').html(startScreen());
-  startQuiz();
+  startQuizButton();
 }
 
-function startQuiz() {
+// button event to render first quiz question
+function startQuizButton() {
   $('.start-quiz').on('click', function (event) {
     event.preventDefault();
     store.quizStarted = true;
@@ -137,66 +103,131 @@ function startQuiz() {
   });
 }
 
+// render first question to page
 function showQuestion() {
   $('main').html(generateQuestion());
 }
 
-// create next question function
-// handle next button
-// handle submit button
+// render elements for the questions page
+function generateQuestion() {
+  return `
+    <header>
+      <h1>The Hardest Space Quiz You'll Take Today 🌑</h1>
+      <h2>Question ${store.questionNumber + 1} out of 5</h2>
+      <h2>Score: ${store.score} out of 5</h2>
+    </header>
 
-// increments score
+    <div>
+      <form id="quiz-form"> 
+        
+        <h3>${store.questions[store.questionNumber].question}</h3>
+
+        <label class="container" for="option-one"><input type="radio" id="option-one" name="options" value=${store.questions[store.questionNumber].answers[0]} required>${store.questions[store.questionNumber].answers[0]}<span class="checkmark"></span></label>
+
+        <label class="container" for="option-two"><input type="radio" id="option-two" name="options" value=${store.questions[store.questionNumber].answers[1]} required>${store.questions[store.questionNumber].answers[1]}<span class="checkmark"></span></label>
+
+        <label class="container" for="option-three"><input type="radio" id="option-three" name="options" value=${store.questions[store.questionNumber].answers[2]} required>${store.questions[store.questionNumber].answers[2]}<span class="checkmark"></span></label>
+
+        <label class="container" for="option-four"><input type="radio" id="option-four" name="options" value=${store.questions[store.questionNumber].answers[3]} required>${store.questions[store.questionNumber].answers[3]}<span class="checkmark"></span></label>
+
+        <label class="container" for="option-five"><input type="radio" id="option-five" name="options" value=${store.questions[store.questionNumber].answers[4]} required>${store.questions[store.questionNumber].answers[4]}<span class="checkmark"></span></label>
+
+        <button type="submit" class="submit-button">Submit Answer</button>
+         
+      </form>
+    </div>`;
+}
+
+// handle submit answer choice button
+function handleAnswerSubmitButton() {
+  $('main').submit('.submit-button', function (event) {
+    event.preventDefault();
+    checkAnswerChoice();
+  });
+}
+
+// handle answer choice submission
+function checkAnswerChoice() {
+  let answerChoice = $('input[name="options"]:checked').val();
+  if (answerChoice === store.questions[store.questionNumber].correctAnswer) {
+    updateScore();
+    $('main').html(correctAnswer());
+  } else {
+    $('main').html(wrongAnswer());
+  }
+}
+
+// renders page for correct answer option
+function correctAnswer() {
+  return `
+  <h1>CORRECT! 🎉</h1>
+  <h2>Great job! The correct answer is ${store.questions[store.questionNumber].correctAnswer}</h2>
+  <h3>Score: ${store.score}/5</h3>
+  <button type="button" class="next-question-button">Next Question</button>`;
+}
+
+// renders page for wrong answer option
+function wrongAnswer() {
+  return `
+  <h1>WRONG 😢</h1>
+  <h2>Bummer! The right answer is ${store.questions[store.questionNumber].correctAnswer}</h2>
+  <h3>Score: ${store.score}/5</h3>
+  <button type="button" class="next-question-button">Next Question</button>`;
+}
+
+// increase question number by 1
+function updateQuestionNum() {
+  store.questionNumber++;
+}
+
+// increase score by 1 if correct choice
 function updateScore() {
   store.score++;
 }
 
-// create correct and wrong selection results
-
-// show results page
-function showResult() {
-  $('main').html(resultsTemplate());
+// handles next question
+function nextQuestion() {
+  if (store.questionNumber < 4) {
+    updateQuestionNum();
+    $('main').html(generateQuestion());
+  } else {
+    showResult();
+  }
 }
 
-// create results template
+// handle next question button click event
+function handleNextQuestionButton() {
+  $('main').on('click', '.next-question-button', nextQuestion);
+}
 
-// when user clicks restart quiz button
+// shows the result page template
+function showResult() {
+  $('main').html(resultTemplate());
+}
+
+// renders elements for the result page
+function resultTemplate() {
+  return `
+  <h1>End of Quiz! 🌑</h1>
+  <h3>Your Score: ${store.score}/5!</h3>
+  <button type="button" class="play-again">Play Again</button>`;
+}
+
+// handles restart quiz button event
 function restartQuiz() {
-  $('main').on('click', '.start-quiz', function (event) {
+  $('main').on('click', '.play-again', function (event) {
     event.preventDefault();
     store.quizStarted = false;
-    renderQuiz();
+    startPage();
   });
 }
 
+// handles functions to start the quiz
 function renderQuiz() {
-  startScreen();
-  // create next button function
-  // create submit button
+  startPage();
+  handleAnswerSubmitButton();
+  handleNextQuestionButton();
+  restartQuiz();
 }
 
-/**
- *
- * Technical requirements:
- *
- * Your app should include a render() function, that regenerates the view each time the store is updated.
- * See your course material, consult your instructor, and reference the slides for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
- *
- */
-
-/********** TEMPLATE GENERATION FUNCTIONS **********/
-
-// These functions return HTML templates
-
-/********** RENDER FUNCTION(S) **********/
-
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
-
-/********** EVENT HANDLER FUNCTIONS **********/
-
-// These functions handle events (submit, click, etc)
+$(renderQuiz());
