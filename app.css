@@ -39,6 +39,14 @@ form {
   flex-direction: column;
 }
 
+.correct-answer {
+  color: #0000ff;
+}
+
+.wrong-answer {
+  color: #ff0000;
+}
+
 /* label {
   padding: 5px 0;
 } */
@@ -110,7 +118,43 @@ p {
 }
 
 @media all and (min-width: 800px) {
+  body {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header {
+    width: auto;
+  }
+
   header h1 {
+    margin-bottom: 50px;
+    width: 40vw;
+  }
+
+  h2, h3 {
+    width: 30vw;
+  }
+
+  form {
+    align-items: center;
+  }
+
+  .form-question, .container {
+    width: 30vw;
+  }
+
+  p {
     text-align: center;
+  }
+
+  button {
+    margin: 20px auto;
+  }
+
+  .answer-header, .score {
+    padding: 0 20px;
   }
 }

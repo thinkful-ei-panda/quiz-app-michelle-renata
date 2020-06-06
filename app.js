@@ -120,7 +120,7 @@ function generateQuestion() {
     <div>
       <form id="quiz-form"> 
         
-        <h3>${store.questions[store.questionNumber].question}</h3>
+        <h3 class="form-question">${store.questions[store.questionNumber].question}</h3>
 
         <label class="container" for="option-one"><input type="radio" id="option-one" name="options" value=${store.questions[store.questionNumber].answers[0]} required>${store.questions[store.questionNumber].answers[0]}<span class="checkmark"></span></label>
 
@@ -160,18 +160,18 @@ function checkAnswerChoice() {
 // renders page for correct answer option
 function correctAnswer() {
   return `
-  <h1>CORRECT! 🎉</h1>
-  <h2>Great job! The correct answer is ${store.questions[store.questionNumber].correctAnswer}</h2>
-  <h3>Score: ${store.score}/5</h3>
+  <h1 class="answer-header">CORRECT! 🎉</h1>
+  <h2 class="answer-header">Great job! The correct answer is <span class="correct-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
+  <h3 class="score">Score: ${store.score}/5</h3>
   <button type="button" class="next-question-button">Next Question</button>`;
 }
 
 // renders page for wrong answer option
 function wrongAnswer() {
   return `
-  <h1>WRONG 😢</h1>
-  <h2>Bummer! The right answer is ${store.questions[store.questionNumber].correctAnswer}</h2>
-  <h3>Score: ${store.score}/5</h3>
+  <h1 class="answer-header">WRONG 😢</h1>
+  <h2 class="answer-header">Bummer! The right answer is <span class="wrong-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
+  <h3 class="score">Score: ${store.score}/5</h3>
   <button type="button" class="next-question-button">Next Question</button>`;
 }
 
@@ -208,8 +208,8 @@ function showResult() {
 // renders elements for the result page
 function resultTemplate() {
   return `
-  <h1>End of Quiz! 🌑</h1>
-  <h3>Your Score: ${store.score}/5!</h3>
+  <h1 class="answer-header">End of Quiz! 🌑</h1>
+  <h2 class="answer-header">Your Score: ${store.score}/5!</h3>
   <button type="button" class="play-again">Play Again</button>`;
 }
 
