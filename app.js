@@ -201,21 +201,25 @@ function checkAnswerChoice() {
 // renders page for correct answer option
 function correctAnswer() {
   return `
-  <h1 class="answer-header">CORRECT! 🎉</h1>
-  <h2 class="answer-header">Great job! The correct answer is <span class="correct-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
-  <h3 class="score">Score: ${store.score}/8</h3>
-  <p>${store.questions[store.questionNumber].answerFact}</p>
-  <button type="button" class="next-question-button">Next Question</button>`;
+  <div>
+    <h1 class="answer-header">CORRECT! 🎉</h1>
+    <h2>Great job! The correct answer is <span class="correct-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
+    <h3 class="score">Score: ${store.score}/8</h3>
+    <p>${store.questions[store.questionNumber].answerFact}</p>
+    <button type="button" class="next-question-button">Next Question</button>
+  </div>`;
 }
 
 // renders page for wrong answer option
 function wrongAnswer() {
   return `
-  <h1 class="answer-header">WRONG 😢</h1>
-  <h2 class="answer-header">Bummer! The right answer is <span class="wrong-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
-  <h3 class="score">Score: ${store.score}/8</h3>
-  <p>${store.questions[store.questionNumber].answerFact}</p>
-  <button type="button" class="next-question-button">Next Question</button>`;
+  <div>
+    <h1 class="answer-header">WRONG 😢</h1>
+    <h2>Bummer! The right answer is <span class="wrong-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
+    <h3 class="score">Score: ${store.score}/8</h3>
+    <p>${store.questions[store.questionNumber].answerFact}</p>
+    <button type="button" class="next-question-button">Next Question</button>
+  </div>`;
 }
 
 // increase question number by 1
@@ -250,10 +254,23 @@ function showResult() {
 
 // renders elements for the result page
 function resultTemplate() {
+  let quizResultFeedback = '';
+  if (store.score >= 5) {
+    quizResultFeedback = 'Impressive! You know space!';
+  } else if (store.score < 5 && store.score > 2) {
+    quizResultFeedback = 'You did ok.';
+  } else {
+    quizResultFeedback = 'Yikes. Well, you tried.';
+  }
+
+
   return `
-  <h1 class="answer-header">End of Quiz! 🌑</h1>
-  <h2 class="answer-header">Your Score: ${store.score}/8!</h3>
-  <button type="button" class="play-again">Play Again</button>`;
+  <div>
+    <h1 class="answer-header">End of Quiz! 🌑</h1>
+    <h2 class="answer-header">Your Score: ${store.score}/8!</h3>
+    <p>${quizResultFeedback}</p>
+    <button type="button" class="play-again">Play Again</button>
+  </div>`;
 }
 
 // handles restart quiz button event
