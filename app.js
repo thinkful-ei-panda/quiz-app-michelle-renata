@@ -87,16 +87,16 @@ const store = {
       answerFact: 'Galaxies are categorized as elliptical, spiral, or irregular. There are at least two trillion galaxies in the universe.'
     },
     {
-      question: 'What is the coldest place in the universe?',
+      question: 'How many black holes are there in the Milky Way?',
       answers: [
-        'Deep Space',
-        'The Boomerang Nebula',
-        'The Dark Side of the Moon',
-        'Pluto',
-        'A Black Hole'
+        '0',
+        '1',
+        '1,000',
+        '1,000,000',
+        '10,000,000'
       ],
-      correctAnswer: 'The Boomerang Nebula',
-      answerFact: 'The Boomerang Nebula is one degree Kelvin which is -458 degrees Fahrenheit or -272.15 degrees Celsius.'
+      correctAnswer: '10,000,000',
+      answerFact: '😮 Judging from the number of stars large enough to produce black holes, scientists estimate that there are as many as ten million to a billion black holes in the Milky Way alone. Most of these are invisible to us, and only about a dozen have been identified.'
     },
     {
       question: 'What percent of the universe is dark matter?',
@@ -109,7 +109,43 @@ const store = {
       ],
       correctAnswer: '27%',
       answerFact: 'The rest of the universe is around 68% dark energy, and less than 5% of the universe is made up of what we would consider “normal” matter.'
+    },
+    {
+      question: 'Which is the largest moon in the solar system?',
+      answers: [
+        'Enceladus',
+        'Europa',
+        'Mimas',
+        'Titan',
+        'Ganymede'
+      ],
+      correctAnswer: 'Ganymede',
+      answerFact: 'Ganymede, a moon of Jupiter, is the largest and most massive of the Solar System\'s moons. It is the ninth largest object in the Solar System and the largest without a substantial atmosphere.'
+    },
+    {
+      question: 'Which planet takes almost 30 Earth years to orbit the sun?',
+      answers: [
+        'Saturn',
+        'Neptune',
+        'Uranus',
+        'Neptune',
+        'Pluto'
+      ],
+      correctAnswer: 'Saturn',
+      answerFact: 'Much like its fellow gas giant Jupiter, Saturn takes it time completing a single orbit of the Sun, but rotates on its axis very rapidly. All told, a year on the planet lasts the equivalent of 10,759 Earth days (or about 29+ years).'
     }
+    // {
+    //   question: 'What is the coldest place in the universe?',
+    //   answers: [
+    //     'Deep Space',
+    //     'The Boomerang Nebula',
+    //     'The Dark Side of the Moon',
+    //     'Pluto',
+    //     'A Black Hole'
+    //   ],
+    //   correctAnswer: 'The Boomerang Nebula',
+    //   answerFact: 'The Boomerang Nebula is a protoplanetary nebula located 5,000 light-years away from Earth. It\'s temperature is one degree Kelvin which is -458 degrees Fahrenheit or -272.15 degrees Celsius.'
+    // },
   ],
   quizStarted: false,
   questionNumber: 0,
@@ -154,8 +190,8 @@ function generateQuestion() {
   return `
     <header>
       <h1>The Hardest Space Quiz You'll Take Today 🌑</h1>
-      <h2>Question ${store.questionNumber + 1} out of 8</h2>
-      <h2>Score: ${store.score} out of 8</h2>
+      <h2>Question ${store.questionNumber + 1} out of 10</h2>
+      <h2>Score: ${store.score} out of 10</h2>
     </header>
 
     <div>
@@ -189,7 +225,8 @@ function handleAnswerSubmitButton() {
 
 // handle answer choice submission
 function checkAnswerChoice() {
-  let answerChoice = $('input[name="options"]:checked').val();
+  let answerChoice = $('input[type=radio][name=options]:checked').val();
+  console.log(answerChoice);
   if (answerChoice === store.questions[store.questionNumber].correctAnswer) {
     updateScore();
     $('main').html(correctAnswer());
@@ -204,7 +241,7 @@ function correctAnswer() {
   <div>
     <h1 class="answer-header">CORRECT! 🎉</h1>
     <h2>Great job! The correct answer is <span class="correct-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
-    <h3 class="score">Score: ${store.score}/8</h3>
+    <h3 class="score">Score: ${store.score}/10</h3>
     <p>${store.questions[store.questionNumber].answerFact}</p>
     <button type="button" class="next-question-button">Next Question</button>
   </div>`;
@@ -216,7 +253,7 @@ function wrongAnswer() {
   <div>
     <h1 class="answer-header">WRONG 😢</h1>
     <h2>Bummer! The right answer is <span class="wrong-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
-    <h3 class="score">Score: ${store.score}/8</h3>
+    <h3 class="score">Score: ${store.score}/10</h3>
     <p>${store.questions[store.questionNumber].answerFact}</p>
     <button type="button" class="next-question-button">Next Question</button>
   </div>`;
@@ -234,7 +271,7 @@ function updateScore() {
 
 // handles next question
 function nextQuestion() {
-  if (store.questionNumber < 7) {
+  if (store.questionNumber < 9) {
     updateQuestionNum();
     $('main').html(generateQuestion());
   } else {
@@ -255,19 +292,19 @@ function showResult() {
 // renders elements for the result page
 function resultTemplate() {
   let quizResultFeedback = '';
-  if (store.score >= 5) {
+  if (store.score >= 7) {
     quizResultFeedback = 'Impressive! You know space!';
-  } else if (store.score < 5 && store.score > 2) {
+  } else if (store.score < 7 && store.score > 3) {
     quizResultFeedback = 'You did ok.';
   } else {
-    quizResultFeedback = 'Yikes. Well, you tried.';
+    quizResultFeedback = 'Uh... well, you tried.';
   }
 
 
   return `
   <div>
     <h1 class="answer-header">End of Quiz! 🌑</h1>
-    <h2 class="answer-header">Your Score: ${store.score}/8!</h3>
+    <h2 class="answer-header">Your Score: ${store.score}/10!</h3>
     <p>${quizResultFeedback}</p>
     <button type="button" class="play-again">Play Again</button>
   </div>`;
