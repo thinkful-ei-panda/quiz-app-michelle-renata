@@ -148,13 +148,18 @@ p {
 
   p {
     text-align: center;
+    width: 500px;
   }
 
   button {
     margin: 20px auto;
   }
 
-  .answer-header, .score {
+  .answer-header {
     padding: 0 20px;
+  }
+
+  .score {
+    padding: 0 50px;
   }
 }

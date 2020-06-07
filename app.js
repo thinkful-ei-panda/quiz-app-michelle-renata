@@ -23,7 +23,8 @@ const store = {
         'Saturn',
         'Venus'
       ],
-      correctAnswer: 'Saturn'
+      correctAnswer: 'Saturn',
+      answerFact: 'The largest planet in our solar system by far is Jupiter and Saturn the second largest.'
     },
     {
       question: 'Which of these planets has no moons?',
@@ -34,18 +35,20 @@ const store = {
         'Sun',
         'Pluto'
       ],
-      correctAnswer: 'Mercury'
+      correctAnswer: 'Mercury',
+      answerFact: 'Venus and Mercury are the only two planets that don\'t have a single natural moon orbiting them.'
     },
     {
       question: 'Which of these is the largest object in the asteroid belt?',
       answers: [
         'Makemake',
         'Ceres',
-        '4 Vesta',
-        '3 Juno',
+        'Vesta',
+        'Hygiea',
         'Pallas'
       ],
-      correctAnswer: 'Ceres'
+      correctAnswer: 'Ceres',
+      answerFact: 'Dwarf planet Ceres is the largest object in the asteroid belt between Mars and Jupiter.'
     },
     {
       question: 'Which galaxy is further away from Earth?',
@@ -56,7 +59,8 @@ const store = {
         'Milky Way',
         'Leo Stellar Dust'
       ],
-      correctAnswer: 'MACS0647-JD'
+      correctAnswer: 'MACS0647-JD',
+      answerFact: 'MACS0647-JD is the farthest known galaxy from the Earth. It is 13.3 billion light-years away, the farthest galaxy yet known.'
     },
     {
       question: 'Which planet has the most volcanoes?',
@@ -67,7 +71,44 @@ const store = {
         'Venus',
         'Mercury'
       ],
-      correctAnswer: 'Venus'
+      correctAnswer: 'Venus',
+      answerFact: 'Venus has more volcanoes than any other planet in the solar system. Io, one of Jupiter\'s moons, is the most volcanically active.'
+    },
+    {
+      question: 'What type of galaxy is the most common in the universe?',
+      answers: [
+        'Spiral',
+        'Barred spiral',
+        'Elliptical',
+        'Irregular',
+        'Regular'
+      ],
+      correctAnswer: 'Elliptical',
+      answerFact: 'Galaxies are categorized as elliptical, spiral, or irregular. There are at least two trillion galaxies in the universe.'
+    },
+    {
+      question: 'What is the coldest place in the universe?',
+      answers: [
+        'Deep Space',
+        'The Boomerang Nebula',
+        'The Dark Side of the Moon',
+        'Pluto',
+        'A Black Hole'
+      ],
+      correctAnswer: 'The Boomerang Nebula',
+      answerFact: 'The Boomerang Nebula is one degree Kelvin which is -458 degrees Fahrenheit or -272.15 degrees Celsius.'
+    },
+    {
+      question: 'What percent of the universe is dark matter?',
+      answers: [
+        '27%',
+        '2%',
+        '68%',
+        '5%',
+        '80%'
+      ],
+      correctAnswer: '27%',
+      answerFact: 'The rest of the universe is around 68% dark energy, and less than 5% of the universe is made up of what we would consider “normal” matter.'
     }
   ],
   quizStarted: false,
@@ -113,8 +154,8 @@ function generateQuestion() {
   return `
     <header>
       <h1>The Hardest Space Quiz You'll Take Today 🌑</h1>
-      <h2>Question ${store.questionNumber + 1} out of 5</h2>
-      <h2>Score: ${store.score} out of 5</h2>
+      <h2>Question ${store.questionNumber + 1} out of 8</h2>
+      <h2>Score: ${store.score} out of 8</h2>
     </header>
 
     <div>
@@ -162,7 +203,8 @@ function correctAnswer() {
   return `
   <h1 class="answer-header">CORRECT! 🎉</h1>
   <h2 class="answer-header">Great job! The correct answer is <span class="correct-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
-  <h3 class="score">Score: ${store.score}/5</h3>
+  <h3 class="score">Score: ${store.score}/8</h3>
+  <p>${store.questions[store.questionNumber].answerFact}</p>
   <button type="button" class="next-question-button">Next Question</button>`;
 }
 
@@ -171,7 +213,8 @@ function wrongAnswer() {
   return `
   <h1 class="answer-header">WRONG 😢</h1>
   <h2 class="answer-header">Bummer! The right answer is <span class="wrong-answer">${store.questions[store.questionNumber].correctAnswer}</span>.</h2>
-  <h3 class="score">Score: ${store.score}/5</h3>
+  <h3 class="score">Score: ${store.score}/8</h3>
+  <p>${store.questions[store.questionNumber].answerFact}</p>
   <button type="button" class="next-question-button">Next Question</button>`;
 }
 
@@ -187,7 +230,7 @@ function updateScore() {
 
 // handles next question
 function nextQuestion() {
-  if (store.questionNumber < 4) {
+  if (store.questionNumber < 7) {
     updateQuestionNum();
     $('main').html(generateQuestion());
   } else {
@@ -209,7 +252,7 @@ function showResult() {
 function resultTemplate() {
   return `
   <h1 class="answer-header">End of Quiz! 🌑</h1>
-  <h2 class="answer-header">Your Score: ${store.score}/5!</h3>
+  <h2 class="answer-header">Your Score: ${store.score}/8!</h3>
   <button type="button" class="play-again">Play Again</button>`;
 }
 
