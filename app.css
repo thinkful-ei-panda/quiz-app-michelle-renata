@@ -10,7 +10,7 @@
 
 body {
   height: 100vh;
-  padding: 50px 30px;
+  padding: 50px;
 }
 
 h1 {
@@ -114,7 +114,7 @@ p {
 }
 
 div p {
-  text-align: center;
+  text-align: left;
 }
 
 @media all and (min-width: 800px) {
@@ -146,6 +146,7 @@ div p {
 
   div p {
     max-width: 650px;
+    text-align: center;
   }
 
   form {
