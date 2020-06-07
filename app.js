@@ -26,7 +26,7 @@ const store = {
       correctAnswer: 'Saturn'
     },
     {
-      question: 'Which of these planets have no moons?',
+      question: 'Which of these planets has no moons?',
       answers: [
         'Uranus',
         'Mercury',
